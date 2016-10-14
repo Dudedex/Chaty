@@ -1,0 +1,28 @@
+#include "serversetup.h"
+
+ServerSetup::ServerSetup()
+{
+    if (!server.listen(QHostAddress::Any, SERVER_PORT)) {
+        qDebug()<< "Unable to start Server " << server.errorString();
+        return;
+    }
+
+    QList<QHostAddress> ipAddressesList = QNetworkInterface::allAddresses();
+    qDebug() << "The server is reachable on:";
+    for (int i = 0; i < ipAddressesList.size(); ++i) {
+        if (ipAddressesList.at(i).toIPv4Address()) {
+            qDebug() << "  - " << ipAddressesList.at(i).toString();
+        }
+    }
+    qDebug() << "Port: "<< server.serverPort();
+}
+
+ServerSetup::~ServerSetup()
+{
+    qDebug() << "ServerSetup Destructor called";
+}
+
+MyRsaKeysHandler *ServerSetup::getMyRsaKeysHandler()
+{
+    return myRsaKeysHandler;
+}

@@ -1,0 +1,6 @@
+#ifndef APPLICATION_PORTS_H
+#define APPLICATION_PORTS_H
+
+enum ApplicationPorts {SERVER_PORT = 2960};
+
+#endif // APPLICATION_PORTS_H
